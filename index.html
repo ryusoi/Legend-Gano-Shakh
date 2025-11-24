@@ -1,0 +1,697 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Discover Gano Shakh: The world's purest log-grown Ganoderma for human wellness, immortal Reishi Decor sculptures, and life-extending Reishi Biome for pets." />
+    <title>Gano Shakh – The Purest Ganoderma on Earth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <!-- Google Model Viewer for AR -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        /* Dark Theme (Default) - Updated to Dark Blue */
+        --bg-primary: #0a192f;
+        --bg-secondary: #1e293b;
+        --bg-card: rgba(30, 41, 59, 0.7);
+        --bg-card-solid: #1e293b;
+        --bg-input: rgba(51, 65, 85, 0.8);
+        --text-primary: #e2e8f0;
+        --text-secondary: #94a3b8;
+        --text-heading-from: #fcd34d;
+        --text-heading-to: #fb923c;
+        --border-primary: rgba(100, 116, 139, 0.3);
+        --border-secondary: rgba(148, 163, 184, 0.5);
+
+        /* HD Neon Palette */
+        --neon-blue: #00f3ff;
+        --neon-gold: #ffd700;
+        --neon-purple: #bc13fe;
+        --neon-green: #39ff14;
+        
+        /* Unified Navigation Button Colors */
+        --nav-button-bg: #1e40af; /* Dark Blue */
+        --nav-button-text: #fde047; /* Vivid Yellow */
+        --nav-button-bg-hover: #2563eb; /* Lighter Blue for hover */
+        --nav-button-text-hover: #fef9c3; /* Lighter Yellow for hover */
+        --nav-button-bg-active: #dc2626; /* Vivid Red */
+        --nav-button-text-active: #1c1917; /* Black */
+      }
+      .light {
+        /* Light Theme - Updated to Pure White & Vivid Blue Text */
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8fafc;
+        --bg-card: rgba(248, 250, 252, 0.7);
+        --bg-card-solid: #ffffff;
+        --bg-input: rgba(226, 232, 240, 0.8);
+        --text-primary: #1e40af; /* Vivid Dark Blue */
+        --text-secondary: #2563eb; /* Lighter Vivid Blue */
+        --text-heading-from: #1d4ed8; /* Solid Vivid Blue */
+        --text-heading-to: #1d4ed8; /* Solid Vivid Blue */
+        --border-primary: #e2e8f0;
+        --border-secondary: #cbd5e1;
+        
+        /* Unified Navigation Button Colors (already correct) */
+        --nav-button-bg: #1e40af;
+        --nav-button-text: #fde047;
+        --nav-button-bg-hover: #2563eb;
+        --nav-button-text-hover: #fef9c3;
+        --nav-button-bg-active: #dc2626;
+        --nav-button-text-active: #1c1917;
+      }
+
+      body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        font-family: 'Poppins', sans-serif;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        overflow-x: hidden;
+      }
+      html {
+        scroll-padding-top: 80px; /* Offset for sticky header */
+      }
+      /* Parallax effect for Hero */
+      .parallax-bg {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      /* Styles for AI Response HTML content */
+      .ai-response-content h3 {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text-heading-from);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.25rem;
+        border-bottom: 1px solid var(--border-primary);
+      }
+      .ai-response-content strong {
+        color: var(--text-primary);
+        font-weight: 600;
+      }
+      .ai-response-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+        font-size: 0.875rem;
+      }
+      .ai-response-content th, .ai-response-content td {
+        border: 1px solid var(--border-primary);
+        padding: 0.5rem 0.75rem;
+        text-align: left;
+      }
+      .ai-response-content th {
+        background-color: var(--bg-card);
+        color: var(--text-heading-from);
+      }
+      .ai-response-content td {
+         color: var(--text-primary);
+      }
+       .ai-response-content ul {
+        list-style-type: disc;
+        padding-left: 1.5rem;
+        margin-top: 0.5rem;
+      }
+       .ai-response-content li {
+        margin-bottom: 0.25rem;
+      }
+      .ai-response-content hr {
+        border-color: var(--border-secondary);
+        margin: 1rem 0;
+      }
+
+      @keyframes rotate-y {
+        from { transform: rotateY(0deg); } to { transform: rotateY(360deg); }
+      }
+      .animate-rotate-y {
+        animation: rotate-y 10s linear infinite;
+        transform-style: preserve-3d;
+      }
+      
+      /* --- High Definition Chrome Gold Text --- */
+      .chrome-gold-text {
+        background: linear-gradient(
+          to right, 
+          #BF953F 0%, 
+          #FCF6BA 20%, 
+          #B38728 40%, 
+          #FBF5B7 60%, 
+          #AA771C 80%, 
+          #BF953F 100%
+        );
+        background-size: 200% auto;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shine-chrome 3s linear infinite;
+        text-shadow: 0px 0px 1px rgba(255,215,0,0.2);
+        filter: drop-shadow(0 0 3px rgba(184, 134, 11, 0.5));
+        font-weight: 900;
+      }
+      
+      @keyframes shine-chrome {
+        to {
+          background-position: 200% center;
+        }
+      }
+
+      /* --- High Definition Scan Effect (For Logo Image) --- */
+      .scan-effect {
+        position: relative;
+        overflow: hidden;
+      }
+      /* Use ::after to ensure it sits on top of the image */
+      .scan-effect::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -150%;
+        width: 100%;
+        height: 100%;
+        /* Ultra HD Tight Beam: Extremely sharp transition for high-definition chrome glint */
+        background: linear-gradient(
+          to right, 
+          transparent 0%, 
+          transparent 45%,
+          rgba(255, 255, 255, 0.1) 48%,
+          rgba(255, 255, 255, 0.8) 50%,
+          rgba(255, 255, 255, 0.1) 52%,
+          transparent 55%, 
+          transparent 100%
+        );
+        transform: skewX(-25deg);
+        /* Slow, majestic scan for visually dynamic feel (Slower: 12s) */
+        animation: scan-pass 12s ease-in-out infinite;
+        z-index: 50;
+        pointer-events: none;
+        /* Color Dodge or Soft Light creates a more natural metallic reflection */
+        mix-blend-mode: color-dodge;
+        /* High brightness boost for "shining" effect */
+        filter: brightness(2.0) drop-shadow(0 0 2px rgba(255,255,255,0.8));
+      }
+      
+      @keyframes scan-pass {
+        0% { left: -150%; }
+        100% { left: 250%; }
+      }
+
+      /* --- Text Specific Scan Effect (Inner Shine) --- */
+      .text-scan {
+        /* Sharper Fine Line Gradient */
+        background: linear-gradient(
+          to right, 
+          transparent 0%, 
+          transparent 48%,
+          rgba(255, 255, 255, 1) 50%, /* Extremely sharp white line */
+          transparent 52%, 
+          transparent 100%
+        );
+        background-size: 200% auto;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: text-shine-pass 12s ease-in-out infinite; /* Synced with logo scan */
+        pointer-events: none;
+        mix-blend-mode: screen; /* Ensure it shines bright white on top of gold */
+        z-index: 20;
+      }
+
+      @keyframes text-shine-pass {
+        0% { background-position: 200% center; }
+        100% { background-position: -200% center; }
+      }
+
+      /* Reishi Decor Page Styles */
+      .font-reishi-title { font-family: 'EB Garamond', serif; }
+      .font-reishi-body { font-family: 'Inter', sans-serif; }
+      .btn-gold {
+        background-image: linear-gradient(145deg, #FFD700, #DAA520, #B8860B);
+        border: 1px solid #B8860B;
+        color: #1c1917;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+      }
+      .btn-gold:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+      }
+      
+      /* Reishi Biome Page Styles */
+      @keyframes glow {
+        0%, 100% { box-shadow: 0 0 10px #fde047, 0 0 20px #f59e0b, 0 0 30px #d97706; }
+        50% { box-shadow: 0 0 20px #fde047, 0 0 40px #f59e0b, 0 0 60px #d97706; }
+      }
+      .btn-glowing-gold {
+        background-color: #f59e0b; color: #1c1917; border: 1px solid #fde047;
+        transition: all 0.3s ease; animation: glow 3s infinite;
+      }
+      .btn-glowing-gold:hover { transform: translateY(-2px) scale(1.02); animation-play-state: paused; box-shadow: 0 0 20px #fde047, 0 0 40px #f59e0b, 0 0 60px #d97706; }
+
+      /* Navigation Buttons */
+      .nav-button {
+        background-color: var(--nav-button-bg); color: var(--nav-button-text); padding: 0.4rem 0.8rem;
+        border-radius: 0.5rem; font-weight: 600; font-size: 0.75rem; line-height: 1;
+        transition: all 0.2s ease-in-out; border: 1px solid rgba(0,0,0,0.2);
+        text-shadow: 1px 1px 1px rgba(0,0,0,0.4); white-space: nowrap;
+      }
+      .nav-button:hover {
+        background-color: var(--nav-button-bg-hover); color: var(--nav-button-text-hover);
+        transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      }
+      .nav-button.active {
+        background-color: var(--nav-button-bg-active); color: var(--nav-button-text-active);
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.4); transform: translateY(0px);
+      }
+      
+      /* Language-specific nav button sizing for EN & ES */
+      .nav-container.lang-compact .nav-row {
+        gap: 0.25rem; /* 4px */
+      }
+      .nav-container.lang-compact .nav-button {
+        font-size: 0.65rem; /* 10.4px */
+        padding: 0.3rem 0.5rem;
+      }
+
+
+      /* Theme Switcher */
+      .theme-switch-wrapper {
+        display: flex; align-items: center; gap: 6px;
+      }
+      .theme-switch {
+        display: inline-block; height: 22px; position: relative; width: 40px;
+      }
+      .theme-switch input { display: none; }
+      .slider {
+        background-color: #374151; cursor: pointer;
+        position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+        transition: .4s; border-radius: 22px;
+      }
+      .slider:before {
+        content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px;
+        position: absolute; background-color: white;
+        transition: .4s; border-radius: 50%;
+      }
+      input:checked + .slider { background-color: #3b82f6; }
+      input:checked + .slider:before { transform: translateX(18px); }
+
+      /* --- Neon Chatbox Border Effect --- */
+      .neon-box-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1.5rem;
+        z-index: 0;
+        /* Inner background color to sit on top of rotating border */
+        background: rgba(15, 23, 42, 0.95); 
+      }
+      
+      .neon-box-container::before {
+        content: '';
+        position: absolute;
+        top: -50%; 
+        left: -50%;
+        width: 200%; 
+        height: 200%;
+        /* Fine Line Vivid Neon Blue Conic Gradient */
+        background: conic-gradient(
+          transparent 0deg, 
+          transparent 340deg, 
+          #00f2ff 355deg,
+          #ffffff 360deg
+        );
+        animation: rotate-neon 10s linear infinite;
+        z-index: -2;
+      }
+      
+      .neon-box-container::after {
+        content: '';
+        position: absolute;
+        /* Border thickness */
+        inset: 1px; 
+        background: rgba(15, 23, 42, 0.95); /* Re-apply bg to mask center */
+        border-radius: 1.45rem;
+        z-index: -1;
+      }
+
+      /* --- Neon Vivid Green (Bloodwork) Border Effect --- */
+      .neon-box-green {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1.5rem;
+        z-index: 0;
+        background: rgba(15, 23, 42, 0.95); 
+      }
+      
+      .neon-box-green::before {
+        content: '';
+        position: absolute;
+        top: -50%; 
+        left: -50%;
+        width: 200%; 
+        height: 200%;
+        /* Vivid Neon Green Conic Gradient */
+        background: conic-gradient(
+          transparent 0deg, 
+          transparent 340deg, 
+          #39ff14 355deg,
+          #FFFFFF 360deg
+        );
+        animation: rotate-neon 10s linear infinite;
+        z-index: -2;
+      }
+      
+      .neon-box-green::after {
+        content: '';
+        position: absolute;
+        inset: 1px; 
+        background: rgba(15, 23, 42, 0.95); 
+        border-radius: 1.45rem;
+        z-index: -1;
+      }
+      
+      @keyframes rotate-neon {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Voice Pulse Animation */
+      @keyframes voice-pulse {
+        0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+        70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+      }
+      .animate-voice-pulse {
+        animation: voice-pulse 1.5s infinite;
+      }
+
+      /* Flash Animation for Bloodwork Drop Zone */
+      @keyframes flash-border {
+        0%, 100% { border-color: rgba(255, 215, 0, 0.2); box-shadow: 0 0 0 rgba(255, 215, 0, 0); }
+        50% { border-color: rgba(255, 215, 0, 0.8); box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+      }
+      .animate-flash {
+        animation: flash-border 2s infinite;
+      }
+
+      /* ==========================================
+         NEW NEON / SCI-FI VISUAL UPGRADES
+         ========================================== */
+
+      /* 1. Neon Spore Rainfall Curtain */
+      @keyframes spore-fall {
+        0% { transform: translateY(-10vh); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(110vh); opacity: 0; }
+      }
+      .spore-curtain {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .spore-line {
+        position: absolute;
+        top: -10%;
+        width: 1px;
+        background: linear-gradient(to bottom, transparent, var(--color, #00f3ff), transparent);
+        opacity: 0;
+        animation: spore-fall linear infinite;
+      }
+
+      /* 2. Holographic Neon Card Hover (Auto-Pulsing) */
+      @keyframes holo-pulse {
+        0% { box-shadow: 0 0 5px rgba(0, 242, 255, 0.2), inset 0 0 5px rgba(0, 242, 255, 0.1); border-color: rgba(0, 242, 255, 0.3); }
+        50% { box-shadow: 0 0 20px rgba(0, 242, 255, 0.6), inset 0 0 10px rgba(0, 242, 255, 0.3); border-color: rgba(0, 242, 255, 0.8); }
+        100% { box-shadow: 0 0 5px rgba(0, 242, 255, 0.2), inset 0 0 5px rgba(0, 242, 255, 0.1); border-color: rgba(0, 242, 255, 0.3); }
+      }
+      .holo-card {
+        position: relative;
+        transition: all 0.3s ease;
+        animation: holo-pulse 4s infinite ease-in-out;
+        overflow: hidden;
+      }
+      .holo-card::before {
+        content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+        background: conic-gradient(transparent, rgba(0, 243, 255, 0.3), transparent 30%);
+        animation: rotate-neon 6s linear infinite;
+        z-index: -1; opacity: 0; transition: opacity 0.3s;
+      }
+      .holo-card:hover::before { opacity: 1; }
+
+      /* 3. Neon Vein "Living Border" Box Frames */
+      @keyframes vein-flow {
+        0% { background-position: 0% 0%; }
+        100% { background-position: 200% 200%; }
+      }
+      .living-border {
+        position: relative;
+        z-index: 0;
+        border: 1px solid transparent; /* Fallback */
+        background: 
+          linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+          linear-gradient(45deg, #39ff14, #00f3ff, #bc13fe, #ffd700, #39ff14) border-box;
+        background-size: 200% 200%;
+        animation: vein-flow 8s linear infinite;
+        border-radius: 1rem;
+      }
+
+      /* 4. Plasma-Glow Floating Buttons */
+      @keyframes float-plasma {
+        0%, 100% { transform: translateY(0); box-shadow: 0 5px 15px rgba(0, 243, 255, 0.4); }
+        50% { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(0, 243, 255, 0.6), 0 0 10px rgba(255, 255, 255, 0.8); }
+      }
+      .plasma-btn {
+        position: relative;
+        background: rgba(0, 0, 0, 0.6);
+        border: 1px solid #00f3ff;
+        color: #00f3ff;
+        backdrop-filter: blur(4px);
+        animation: float-plasma 3s ease-in-out infinite;
+        overflow: hidden;
+      }
+      .plasma-btn::after {
+        content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        animation: scan-pass 3s ease-in-out infinite;
+      }
+
+      /* 5. Neon Grid Floor (Retro-Futuristic) */
+      @keyframes grid-scroll {
+        0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+        100% { transform: perspective(500px) rotateX(60deg) translateY(40px); }
+      }
+      .neon-grid-floor {
+        position: fixed;
+        bottom: -20vh; left: -50%; width: 200%; height: 60vh;
+        background-image: 
+          linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px);
+        background-size: 40px 40px;
+        transform: perspective(500px) rotateX(60deg);
+        animation: grid-scroll 2s linear infinite;
+        z-index: -2;
+        pointer-events: none;
+        mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 80%, transparent 100%);
+      }
+
+      /* 6. Plasma Lens Motion Over Images */
+      @keyframes lens-sweep {
+        0% { transform: translateX(-150%) rotate(25deg); }
+        100% { transform: translateX(250%) rotate(25deg); }
+      }
+      .plasma-lens {
+        position: relative;
+        overflow: hidden;
+      }
+      .plasma-lens::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 50%; height: 200%;
+        background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), rgba(0,242,255,0.2), transparent);
+        filter: blur(10px);
+        mix-blend-mode: overlay;
+        animation: lens-sweep 6s ease-in-out infinite;
+        pointer-events: none;
+      }
+
+      /* 8. Electric Glow Title Underlines */
+      @keyframes electric-flicker {
+        0%, 100% { opacity: 1; width: 100%; box-shadow: 0 0 5px #00f3ff; }
+        50% { opacity: 0.8; width: 95%; box-shadow: 0 0 15px #00f3ff; }
+        52% { opacity: 0.4; width: 98%; }
+        54% { opacity: 1; width: 100%; }
+      }
+      .electric-underline {
+        position: relative;
+        display: inline-block;
+      }
+      .electric-underline::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        height: 2px;
+        background: #00f3ff;
+        animation: electric-flicker 3s infinite;
+      }
+
+      /* 9. Neon Plasma Doorway Page Transition */
+      @keyframes doorway-wipe {
+        0% { transform: scaleX(0); opacity: 0; transform-origin: left; }
+        20% { transform: scaleX(1); opacity: 1; transform-origin: left; }
+        80% { transform: scaleX(1); opacity: 1; transform-origin: right; }
+        100% { transform: scaleX(0); opacity: 0; transform-origin: right; }
+      }
+      .doorway-transition {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(90deg, #0a192f, #1e40af, #0a192f);
+        z-index: 9999;
+        pointer-events: none;
+        transform: scaleX(0);
+      }
+      .doorway-active {
+        animation: doorway-wipe 1s ease-in-out forwards;
+      }
+
+      /* 10. Neon Refraction Crystal Glow Icons */
+      .crystal-icon {
+        filter: drop-shadow(0 0 2px rgba(255,255,255,0.8)) drop-shadow(0 0 5px rgba(0,242,255,0.6));
+        transition: all 0.3s;
+      }
+      .crystal-icon:hover {
+        filter: drop-shadow(0 0 5px rgba(255,255,255,1)) drop-shadow(0 0 15px rgba(0,242,255,0.9));
+        transform: rotate(5deg) scale(1.1);
+      }
+
+      /* --- Portal Panel Styles --- */
+      .portal-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1rem;
+        background: #000;
+        transform: translateZ(0);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+      }
+      
+      /* Circuit Border Animation */
+      .portal-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: conic-gradient(transparent, transparent, transparent, #00f3ff, transparent 60%);
+        animation: rotate-neon-slow 8s linear infinite;
+        z-index: 1;
+        opacity: 0.7;
+      }
+      
+      .portal-card::after {
+        content: '';
+        position: absolute;
+        inset: 2px;
+        background: #000; /* Inner mask */
+        border-radius: 0.9rem;
+        z-index: 1;
+      }
+      
+      .portal-content {
+        position: relative;
+        z-index: 2; /* Above the border mask */
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 0.9rem;
+      }
+
+      @keyframes rotate-neon-slow {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      .portal-card:hover {
+        transform: scale(1.05) translateY(-5px);
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.3), 0 0 20px rgba(0, 243, 255, 0.2);
+        border-color: rgba(255, 215, 0, 0.6);
+        z-index: 10;
+      }
+      
+      .portal-card:hover::before {
+        background: conic-gradient(transparent, transparent, #ffd700, #00f3ff, #ffd700, transparent 40%);
+        animation-duration: 3s; /* Speed up on hover */
+        opacity: 1;
+      }
+
+      .portal-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.7s ease, filter 0.5s ease;
+        filter: brightness(0.6) contrast(1.1);
+      }
+      
+      .portal-card:hover .portal-video {
+        transform: scale(1.1);
+        filter: brightness(1.0) contrast(1.0);
+      }
+
+      .portal-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+        pointer-events: none;
+        z-index: 3;
+      }
+
+      .portal-title {
+        position: absolute;
+        bottom: 1.5rem;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        z-index: 4;
+        transition: transform 0.3s ease;
+      }
+      
+      .portal-card:hover .portal-title {
+        transform: scale(1.1);
+      }
+
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.29.1",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2.45.4",
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/": "https://aistudiocdn.com/three@^0.181.2/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "name": "Tiempo 2",
+  "description": "Discover Gano Shakh: The world's purest log-grown Ganoderma for human wellness, immortal Reishi Decor sculptures, and life-extending Reishi Biome for pets.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
